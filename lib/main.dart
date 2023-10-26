@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:project_2/src/pages/glass.dart';
-// import 'package:project_2/src/pages/glass.dart';
+import 'package:flutter/services.dart';
+////
 import 'package:project_2/src/pages/home.dart';
-import 'package:project_2/src/pages/notification.dart';
+import 'package:project_2/src/pages/water.dart';
+import 'package:project_2/src/pages/settings.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -14,15 +17,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int _currentIndex = 1;
-  bool _isDarkTheme = false;
+  int _currentIndex = 0;
+  // bool _isDarkTheme = false;
   final PageController _pageController =
-      PageController(initialPage: 1, viewportFraction: 1);
+      PageController(initialPage: 0, viewportFraction: 1);
   final glbKey = GlobalKey();
   final List<Widget> _screens = [
-    const Glass(),
     const Home(),
-    const Noti(),
+    const Water(),
+    const Settings(),
   ];
 
   // Dispose the PageController
@@ -37,45 +40,8 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
         title: 'Components',
         debugShowCheckedModeBanner: false,
-        theme: _isDarkTheme ? ThemeData.dark() : ThemeData.light(),
+        // theme: _isDarkTheme ? ThemeData.dark() : ThemeData.light(),
         home: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-            title: Text(
-              'DrinkWata',
-              style:
-                  TextStyle(fontSize: 30, color: Theme.of(context).canvasColor),
-            ),
-            actions: [
-              IconButton(
-                splashRadius: 40,
-                icon: const Icon(
-                  Icons.sunny,
-                  color: Color.fromARGB(239, 241, 239, 239),
-                  size: 24,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _isDarkTheme = !_isDarkTheme;
-                  });
-                },
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 16, 0),
-                child: IconButton(
-                  splashRadius: 40,
-                  icon: const Icon(
-                    Icons.more_vert_outlined,
-                    color: Color.fromARGB(239, 241, 239, 239),
-                    size: 24,
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-            ],
-            centerTitle: false,
-            elevation: 10,
-          ),
           body: PageView(
               controller: _pageController,
               children: _screens,
@@ -85,6 +51,9 @@ class _MyAppState extends State<MyApp> {
                 });
               }),
           bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Color.fromARGB(255, 61, 61, 61),
+            unselectedItemColor: Color.fromARGB(255, 246, 246, 246),
+            selectedItemColor: Color.fromARGB(255, 63, 182, 209),
             key: glbKey,
             currentIndex: _currentIndex,
             onTap: (index) {
@@ -95,17 +64,13 @@ class _MyAppState extends State<MyApp> {
             },
             items: const [
               BottomNavigationBarItem(
-                icon: Icon(Icons.blender_outlined),
-                label: '',
-              ),
+                  icon: Icon(Icons.home), label: '', tooltip: 'hola'),
               BottomNavigationBarItem(
-                icon: Icon(Icons.water_drop_outlined),
-                label: '',
-              ),
+                  icon: Icon(Icons.water_drop_outlined),
+                  label: '',
+                  tooltip: 'hola'),
               BottomNavigationBarItem(
-                icon: Icon(Icons.alarm_add_sharp),
-                label: '',
-              ),
+                  icon: Icon(Icons.settings), label: '', tooltip: 'hola'),
             ],
           ),
         ));
