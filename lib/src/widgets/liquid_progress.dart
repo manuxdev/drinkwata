@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:confetti/confetti.dart';
 import 'package:project_2/src/controller/liquid_controller.dart';
+import 'package:project_2/src/share_preference/preference_user.dart';
 
 class LiquidProgress extends StatelessWidget {
   const LiquidProgress({super.key});
@@ -9,11 +10,14 @@ class LiquidProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final waterCtrl = Get.find<LiquidController>();
+    final prefs = PreferenciasUsuario();
+    waterCtrl.drinking.value = prefs.drinking;
+    waterCtrl.less.value = prefs.less;
     return Obx(() => Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '${waterCtrl.moreWater()} ml',
+              '${waterCtrl.less} ml',
               style: const TextStyle(
                   fontSize: 80.0,
                   color: Color.fromARGB(255, 246, 246, 246),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_2/src/controller/liquid_controller.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:project_2/src/share_preference/preference_user.dart';
 
 class SettingModal extends StatelessWidget {
   const SettingModal({super.key});
@@ -9,27 +9,25 @@ class SettingModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final waterCtrl = Get.find<LiquidController>();
-    return Obx(() => OutlinedButton(
-          onPressed: () => dialogBuilder(context),
-          child: Text(
-            '${waterCtrl.weight} kg',
-            style: const TextStyle(fontSize: 18),
-          ),
-        ));
+    final prefs = PreferenciasUsuario();
+    waterCtrl.weight.value = prefs.weight;
+    return Obx(
+      () => OutlinedButton(
+        onPressed: () => dialogBuilder(context),
+        child: Text(
+          '${waterCtrl.weight} kg',
+          style: const TextStyle(fontSize: 18),
+        ),
+      ),
+    );
   }
 }
 
 Future<void> dialogBuilder(BuildContext context) {
-  // final waterCtrl = Get.find<LiquidController>();
+  final waterCtrl = Get.find<LiquidController>();
   final weightController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-
-  setValue(value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setString('weight', value);
-  }
-
+  final prefs = PreferenciasUsuario();
   return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -57,7 +55,9 @@ Future<void> dialogBuilder(BuildContext context) {
 
                   return null;
                 },
-                onChanged: setValue,
+                onChanged: (value) {
+                  waterCtrl.updateValue(value);
+                },
               ),
             ),
           ),
@@ -78,6 +78,7 @@ Future<void> dialogBuilder(BuildContext context) {
               child: const Text('Enable'),
               onPressed: () {
                 if (formKey.currentState!.validate()) {
+                  prefs.weight = int.parse(weightController.text);
                   Navigator.of(context).pop();
                 }
               },

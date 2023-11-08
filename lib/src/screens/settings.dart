@@ -39,12 +39,12 @@ class Settings extends StatelessWidget {
           height: 10,
           color: Color.fromARGB(255, 109, 109, 109),
         ),
-        const Padding(
-          padding: EdgeInsetsDirectional.fromSTEB(40, 20, 60, 20),
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(40, 20, 60, 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 'Consumo Diario',
                 style: TextStyle(
                     color: Color.fromARGB(255, 246, 246, 246), fontSize: 20),
