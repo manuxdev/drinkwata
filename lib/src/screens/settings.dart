@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_2/src/widgets/setting_modal.dart';
+import 'package:DrinkWata/src/widgets/setting_modal.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -39,12 +39,12 @@ class Settings extends StatelessWidget {
           height: 10,
           color: Color.fromARGB(255, 109, 109, 109),
         ),
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(40, 20, 60, 20),
+        const Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(40, 20, 60, 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Consumo Diario',
                 style: TextStyle(
                     color: Color.fromARGB(255, 246, 246, 246), fontSize: 20),

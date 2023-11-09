@@ -1,58 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:DrinkWata/src/screens/screens.dart';
+import 'package:DrinkWata/src/screens/scroll_page.dart';
+import 'package:DrinkWata/src/share_preference/preference_user.dart';
 
-////
-import 'package:project_2/src/screens/home.dart';
-import 'package:project_2/src/screens/water.dart';
-import 'package:project_2/src/screens/settings.dart';
-import 'package:project_2/src/controller/page-controller.dart';
-// import 'package:project_2/src/widgets/custon_animated_bar.dart';
+import 'package:DrinkWata/src/controller/page-controller.dart';
+// import 'package:DrinkWata/src/widgets/custon_animated_bar.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({super.key});
   final pageCtrl = Get.put(PagesController());
+  final prefs = PreferenciasUsuario();
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<PagesController>(builder: (controller) {
-      return MaterialApp(
-          title: 'Components',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData.dark(useMaterial3: true),
-          // theme: _isDarkTheme ? ThemeData.dark() : ThemeData.light(),
-          home: Scaffold(
-            body: IndexedStack(
-              index: controller.tabIndex,
-              children: [Home(), Water(), Settings()],
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              selectedItemColor: const Color.fromARGB(255, 63, 182, 209),
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              onTap: controller.changeTabIndex,
-              currentIndex: controller.tabIndex,
-              type: BottomNavigationBarType.fixed,
-              items: const [
-                BottomNavigationBarItem(
-                    activeIcon: Icon(Icons.cloud),
-                    icon: Icon(Icons.cloud_outlined),
-                    label: '',
-                    tooltip: 'Home'),
-                BottomNavigationBarItem(
-                    activeIcon: Icon(Icons.water_drop),
-                    icon: Icon(Icons.water_drop_outlined),
-                    label: '',
-                    tooltip: 'Water'),
-                BottomNavigationBarItem(
-                    activeIcon: Icon(Icons.settings),
-                    icon: Icon(Icons.settings_outlined),
-                    label: '',
-                    tooltip: 'Settings'),
-              ],
-            ),
-            // buildBottonBar(controller),
-          ));
-    });
+    return MaterialApp(
+        title: 'Components',
+        debugShowCheckedModeBanner: false,
+        initialRoute: prefs.weight == 0 ? 'scrollPage' : 'screens',
+        routes: {
+          'scrollPage': (BuildContext context) => ScrollPage(),
+          'screens': (BuildContext context) => Screens(),
+        },
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+              brightness: Brightness.dark,
+              seedColor: const Color.fromARGB(255, 63, 182, 209)),
+          useMaterial3: true,
+        ),
+        // theme: _isDarkTheme ? ThemeData.dark() : ThemeData.light(),
+        home: prefs.weight != 0 ? Screens() : ScrollPage());
   }
 }
 

@@ -18,7 +18,7 @@ class LiquidController extends GetxController {
   void onInit() {
     super.onInit();
     cargarPref();
-    Timer.periodic(const Duration(hours: 24), (Timer t) => reset());
+    Timer.periodic(const Duration(seconds: 20), (Timer t) => reset());
   }
 
   cargarPref() async {
@@ -34,13 +34,13 @@ class LiquidController extends GetxController {
   }
 
 // Genera el valor inicial
-  void createWeight(String valor) {
-    if (valor != '') {
-      weight.value = int.parse(valor);
-      total.value = (weight.value * 35);
-      less.value = total.value;
-    }
-  }
+  // void createWeight(String valor) {
+  //   if (valor != '') {
+  //     weight.value = int.parse(valor);
+  //     total.value = (weight.value * 35);
+  //     less.value = total.value;
+  //   }
+  // }
 
   //Genera el faltante
   waterLess(pos) async {
@@ -89,8 +89,9 @@ class LiquidController extends GetxController {
   //modifica los valores del peso
   void updateValue(String newValue) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (newValue == "") {
+    if (newValue == '') {
       weight.value = 0;
+      prefs.setInt('weight', weight.value);
     } else {
       weight.value = int.parse(newValue);
       total.value = (weight.value * 35);
@@ -98,6 +99,7 @@ class LiquidController extends GetxController {
       var oldTotal = total.value;
       var resto = total.value - oldTotal;
       less.value += resto;
+      prefs.setInt('weight', weight.value);
       prefs.setInt('less', less.value);
       prefs.setInt('total', total.value);
     }

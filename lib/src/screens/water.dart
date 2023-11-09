@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project_2/src/controller/liquid_controller.dart';
-import 'package:project_2/src/widgets/liquid_progress.dart';
+import 'package:DrinkWata/src/controller/liquid_controller.dart';
+import 'package:DrinkWata/src/widgets/liquid_progress.dart';
 
 class Water extends StatelessWidget {
   const Water({

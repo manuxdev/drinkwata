@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:project_2/src/controller/liquid_controller.dart';
-import 'package:project_2/src/pages/main_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:DrinkWata/src/controller/liquid_controller.dart';
+import 'package:DrinkWata/src/screens/screens.dart';
+import 'package:DrinkWata/src/share_preference/preference_user.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class ScrollPage extends StatelessWidget {
   ScrollPage({super.key});
@@ -21,6 +22,13 @@ class ScrollPage extends StatelessWidget {
     return Stack(
       children: [
         backGround1(),
+        const Align(
+          alignment: Alignment.bottomCenter,
+          child: Icon(
+            Icons.keyboard_arrow_down,
+            size: 70.0,
+          ),
+        ),
         texTos(),
       ],
     );
@@ -69,22 +77,15 @@ Widget backGround2() {
 }
 
 Widget texTos() {
-  const estiloTexto = TextStyle(color: Colors.white, fontSize: 50);
-
-  return SafeArea(
+  const tituloTexto = TextStyle(color: Colors.black, fontSize: 40);
+  const descriptionTexto =
+      TextStyle(color: Colors.black, fontSize: 70, fontWeight: FontWeight.w800);
+  return const Center(
     child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        const SizedBox(
-          height: 80.0,
-        ),
-        const Text('Hola', style: estiloTexto),
-        const Text("Miercoles", style: estiloTexto),
-        Expanded(child: Container()),
-        const Icon(
-          Icons.keyboard_arrow_down,
-          size: 70.0,
-          color: Colors.white,
-        )
+        Text('Bienvenido a:', style: tituloTexto),
+        Text("DrinkWata", style: descriptionTexto),
       ],
     ),
   );
@@ -94,13 +95,8 @@ Widget bottonReg(context) {
   final waterCtrl = Get.find<LiquidController>();
   final weightController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-
-  setWeight(String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('weight', value);
-    waterCtrl.createWeight(value);
-  }
-
+  final prefs = PreferenciasUsuario();
+  waterCtrl.weight.value = prefs.weight;
   return Center(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -128,7 +124,9 @@ Widget bottonReg(context) {
                   }
                   return null;
                 },
-                onChanged: setWeight,
+                onChanged: (value) {
+                  waterCtrl.updateValue(value);
+                },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Weight',
@@ -143,7 +141,7 @@ Widget bottonReg(context) {
                   borderRadius: BorderRadius.all(Radius.circular(10))))),
           onPressed: () {
             if (formKey.currentState!.validate()) {
-              final route = MaterialPageRoute(builder: (context) => MainPage());
+              final route = MaterialPageRoute(builder: (context) => Screens());
               Navigator.push(context, route);
             }
           },

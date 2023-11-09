@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // import 'package:confetti/confetti.dart';
-import 'package:project_2/src/controller/liquid_controller.dart';
-import 'package:project_2/src/share_preference/preference_user.dart';
+import 'package:DrinkWata/src/controller/liquid_controller.dart';
+import 'package:DrinkWata/src/share_preference/preference_user.dart';
 
 class LiquidProgress extends StatelessWidget {
   const LiquidProgress({super.key});
