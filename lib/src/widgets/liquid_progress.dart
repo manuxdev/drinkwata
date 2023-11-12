@@ -16,26 +16,37 @@ class LiquidProgress extends StatelessWidget {
     return Obx(() => Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              '${waterCtrl.less} ml',
-              style: const TextStyle(
-                  fontSize: 80.0,
-                  color: Color.fromARGB(255, 246, 246, 246),
-                  fontWeight: FontWeight.w700),
-            ),
-            Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0, 7, 0, 0),
-                child: Text(
-                  '${waterCtrl.drinking} ml',
-                  style: const TextStyle(
-                      fontSize: 30, color: Color.fromARGB(255, 209, 209, 209)),
-                )),
-            FloatingActionButton(
-              onPressed: () {
-                waterCtrl.reset();
-              },
-              heroTag: null,
-            )
+            waterCtrl.less > 0
+                ? Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 95, 0, 30),
+                    child: Text(
+                      '${waterCtrl.less} ml',
+                      style: const TextStyle(
+                          fontSize: 80.0, fontWeight: FontWeight.w700),
+                    ),
+                  )
+                : const Icon(
+                    Icons.check_circle_outline,
+                    size: 300,
+                    color: Color.fromARGB(255, 63, 182, 209),
+                  ),
+            waterCtrl.less > 0
+                ? Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 90),
+                    child: Text(
+                      '${waterCtrl.drinking} ml',
+                      style: const TextStyle(
+                        fontSize: 30,
+                      ),
+                    ))
+                : Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 30),
+                    child: Text(
+                      '${waterCtrl.drinking} ml',
+                      style: const TextStyle(
+                        fontSize: 30,
+                      ),
+                    )),
           ],
         ));
   }

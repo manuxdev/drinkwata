@@ -11,24 +11,21 @@ class Water extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final waterCtrl = Get.put(LiquidController());
+
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-      SizedBox(height: MediaQuery.of(context).size.height / 6),
+      SizedBox(height: MediaQuery.of(context).size.height / 9),
       const Text(
         "Current Hydration",
         style: TextStyle(
           fontSize: 30,
         ),
       ),
-      const SizedBox(height: 50),
       SizedBox(
         // width: 300.0,
         // height: 300.0,
         child: Column(
           children: [
             const LiquidProgress(),
-            const SizedBox(
-              height: 100,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -49,7 +46,7 @@ class Water extends StatelessWidget {
                           Icon(
                             Icons.coffee_outlined,
                           ),
-                          Text(" Coffe")
+                          Text(" 180 ml")
                         ],
                       )),
                 ),
@@ -70,7 +67,7 @@ class Water extends StatelessWidget {
                           Icon(
                             Icons.sports_bar_outlined,
                           ),
-                          Text(" Coffe")
+                          Text(" 250 ml")
                         ],
                       )),
                 ),
@@ -96,7 +93,7 @@ class Water extends StatelessWidget {
                         child: Row(
                           children: [
                             Icon(Icons.blender_outlined),
-                            Text(" Coffe")
+                            Text(" 500 ml")
                           ],
                         )),
                   ),
@@ -115,7 +112,7 @@ class Water extends StatelessWidget {
                         child: Row(
                           children: [
                             Icon(Icons.blender_outlined),
-                            Text(" Coffe")
+                            Text("700 ml")
                           ],
                         )),
                   ),

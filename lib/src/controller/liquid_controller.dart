@@ -10,7 +10,7 @@ class LiquidController extends GetxController {
   var drinking = 0.obs;
   var porcent = 0.obs;
   var quantities = [180, 250, 500, 750].obs;
-
+  var theme = true.obs;
   // final controller = ConfettiController();
   // bool isPlaying = false;
 
@@ -18,29 +18,19 @@ class LiquidController extends GetxController {
   void onInit() {
     super.onInit();
     cargarPref();
-    Timer.periodic(const Duration(seconds: 20), (Timer t) => reset());
+
+    Timer.periodic(const Duration(hours: 24), (Timer t) => reset());
   }
 
   cargarPref() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     weight.value = prefs.getInt('weight') ?? 0;
     total.value = prefs.getInt('total') ?? 0;
-
     less.value = prefs.getInt('less') ?? 0;
-
     drinking.value = prefs.getInt('drinking') ?? 0;
-
     porcent.value = prefs.getInt('porcent') ?? 0;
+    theme.value = prefs.getBool('theme') ?? false;
   }
-
-// Genera el valor inicial
-  // void createWeight(String valor) {
-  //   if (valor != '') {
-  //     weight.value = int.parse(valor);
-  //     total.value = (weight.value * 35);
-  //     less.value = total.value;
-  //   }
-  // }
 
   //Genera el faltante
   waterLess(pos) async {
@@ -82,23 +72,27 @@ class LiquidController extends GetxController {
     prefs.setInt('drinking', drinking.value);
     prefs.setInt('less', less.value);
     prefs.setInt('porcent', porcent.value);
-
     return;
   }
 
   //modifica los valores del peso
-  void updateValue(String newValue) async {
+  void updateValue(newValue) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (newValue == '') {
-      weight.value = 0;
-      prefs.setInt('weight', weight.value);
+    if (newValue < 50) {
+      less.value = 50 * 35;
     } else {
-      weight.value = int.parse(newValue);
-      total.value = (weight.value * 35);
-      less.value = total.value;
-      var oldTotal = total.value;
-      var resto = total.value - oldTotal;
-      less.value += resto;
+      if (newValue == 0) {
+        weight.value = 0;
+        prefs.setInt('weight', weight.value);
+      } else {
+        weight.value = newValue;
+        if (porcent.value != 0) {
+          return;
+        } else {
+          total.value = (weight.value * 35);
+          less.value = total.value;
+        }
+      }
       prefs.setInt('weight', weight.value);
       prefs.setInt('less', less.value);
       prefs.setInt('total', total.value);
@@ -110,8 +104,14 @@ class LiquidController extends GetxController {
     if (total.value == 0) {
       prefs.setInt('porcent', 0);
     } else {
-      porcent.value = ((drinking.value * 100) ~/ total.value).toInt();
+      porcent.value = ((drinking.value * 100) ~/ total.value);
       prefs.setInt('porcent', porcent.toInt());
     }
+  }
+
+  changeTheme(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    theme.value = value;
+    prefs.setBool('theme', value);
   }
 }

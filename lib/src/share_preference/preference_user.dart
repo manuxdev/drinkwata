@@ -14,6 +14,14 @@ class PreferenciasUsuario {
     _prefs = await SharedPreferences.getInstance();
   }
 
+  get theme {
+    return _prefs.getBool('theme') ?? false;
+  }
+
+  set theme(value) {
+    _prefs.setBool('theme', value);
+  }
+
   get weight {
     return _prefs.getInt('weight') ?? 0;
   }

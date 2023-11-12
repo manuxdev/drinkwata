@@ -20,10 +20,10 @@ class Screens extends StatelessWidget {
         body: FadeIndexedStack(
           index: controller.tabIndex,
           duration: const Duration(milliseconds: 200),
-          children: [
+          children: const [
             Home(),
-            const Water(),
-            const Settings(),
+            Water(),
+            Settings(),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

@@ -13,22 +13,7 @@ class HomeProgress extends StatelessWidget {
     homeCtrl.porcent.value = prefs.porcent;
     return Obx(() => Text(
           "${homeCtrl.porcent} %",
-          style: const TextStyle(
-              fontSize: 60.0,
-              color: Color.fromARGB(255, 246, 246, 246),
-              fontWeight: FontWeight.w700),
-          //     ),
-          //     Padding(
-          //         padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-          //         child: Text(
-          //           '${homeCtrl.less} ml',
-          //           style: const TextStyle(
-          //               fontSize: 30, color: Color.fromARGB(255, 231, 231, 231)),
-          //         )),
-          //   ],
+          style: const TextStyle(fontSize: 60.0, fontWeight: FontWeight.w700),
         ));
-    //  Column(
-    //       mainAxisAlignment: MainAxisAlignment.center,
-    //       children: [
   }
 }
