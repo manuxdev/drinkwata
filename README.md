@@ -38,10 +38,6 @@ Para instalar y ejecutar este proyecto, sigue los siguientes pasos:
 
 ![Home Light](./lib/assets/home_light.jpg)
 
-### Home Dark
-
-![Home Dark](./lib/assets/home_dark.jpg)
-
 ### Whater Light
 
 ![Whater Light](./lib/assets/whater_light.jpg)
