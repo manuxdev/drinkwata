@@ -26,4 +26,34 @@ Para instalar y ejecutar este proyecto, sigue los siguientes pasos:
 
 ## Demo
 
+### Inicio
+
 ![Inicio](./lib/assets/Inicio.jpg)
+
+### Weight Selector
+
+![Weight Selector](./lib/assets/weight_selector.jpg)
+
+### Home Light
+
+![Home Light](./lib/assets/home_light.jpg)
+
+### Home Dark
+
+![Home Dark](./lib/assets/home_dark.jpg)
+
+### Whater Light
+
+![Whater Light](./lib/assets/whater_light.jpg)
+
+### Whater Dark
+
+![Whater Dark](./lib/assets/whater_dark.jpg)
+
+### Settings Light
+
+![Settings Light](./lib/assets/settings_light.jpg)
+
+### Settings Dark
+
+![Settings Dark](./lib/assets/settings_dark.jpg)
