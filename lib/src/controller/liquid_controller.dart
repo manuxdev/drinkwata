@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-// import 'package:confetti/confetti.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 
@@ -11,8 +11,7 @@ class LiquidController extends GetxController {
   var porcent = 0.obs;
   var quantities = [180, 250, 500, 750].obs;
   var theme = true.obs;
-  // final controller = ConfettiController();
-  // bool isPlaying = false;
+
 
   @override
   void onInit() {
@@ -52,14 +51,7 @@ class LiquidController extends GetxController {
     }
   }
 
-  // //modifica el faltante por sobrante
-  // moreWater() {
-  //   if (less <= 0) {
-  //     RxString newvalue = RxString(less.value.toString());
-  //     return newvalue.replaceAll('-', '+');
-  //   }
-  //   return less;
-  // }
+
 
   //resetea el sistema
   void reset() async {

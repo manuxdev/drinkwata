@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-// //
-//// Importaciones Controlladores y preferencias ////
-
 import 'package:DrinkWata/src/share_preference/preference_user.dart';
 import 'package:DrinkWata/src/controller/liquid_controller.dart';
 
-//// Importaciones Paginas////
 import 'package:DrinkWata/src/screens/screens.dart';
 import 'package:DrinkWata/src/screens/scroll_page.dart';
 
-// import 'package:DrinkWata/src/widgets/custon_animated_bar.dart';
 
 class MainPage extends StatelessWidget {
   MainPage({super.key});

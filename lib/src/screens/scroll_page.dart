@@ -106,7 +106,7 @@ Widget bottonReg(context) {
           child: Container(
             width: 400,
             height: 80,
-            // color: const Color.fromARGB(84, 30, 30, 31),
+         
             decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 color: Color.fromARGB(127, 0, 0, 0)),

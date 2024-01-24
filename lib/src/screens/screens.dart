@@ -51,7 +51,7 @@ class Screens extends StatelessWidget {
                 tooltip: 'Settings'),
           ],
         ),
-        // buildBottonBar(controller),
+        
       );
     });
   }

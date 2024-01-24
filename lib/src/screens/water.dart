@@ -21,8 +21,7 @@ class Water extends StatelessWidget {
         ),
       ),
       SizedBox(
-        // width: 300.0,
-        // height: 300.0,
+    
         child: Column(
           children: [
             const LiquidProgress(),
