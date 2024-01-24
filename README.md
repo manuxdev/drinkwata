@@ -26,4 +26,4 @@ Para instalar y ejecutar este proyecto, sigue los siguientes pasos:
 
 ## Demo
 
-![Inicio](/assets/inicio.jpg)
+![Inicio](./lib/assets/inicio.jpg)
